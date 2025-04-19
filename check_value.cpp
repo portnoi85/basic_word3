@@ -1,28 +1,27 @@
-#include <iostream>
+#include "check_value.h"
 
-int main() {
-
-	const int target_value = 54;
+int CheckValue(int target_value) {
 	int current_value = 0;
-	bool not_win = true;
-
+	int attempts = 1;
 	std::cout << "Enter your guess:" << std::endl;
-
 	do {
 		std::cin >> current_value;
-
-		if (current_value < target_value) {
+		if (std::cin.fail()) {
+			//std::cin.clear();
+			//std::cin.ignore();
+			std::cout << "Bad value!" << std::endl;
+			return 0;
+			//continue;
+		}
+		if (current_value > target_value) {
 			std::cout << "less than " << current_value << std::endl;
 		}
-		else if (current_value > target_value) {
+		else if (current_value < target_value) {
 			std::cout << "greater than " << current_value << std::endl;
 		}
 		else {
-			std::cout << "you win!" << std::endl;
-			break;
+			return attempts;
 		}
-
+		++attempts;
 	} while(true);
-
-	return 0;
 }
