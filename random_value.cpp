@@ -1,9 +1,9 @@
 #include <cstdlib>
 #include <ctime>
 
-int RandomValue() {
+int RandomValue(const int max_value) {
 	static bool not_init = true;
-	const int max_value = 100;
+//	const int max_value = 100;
 	if (not_init) {
 		std::srand(std::time(nullptr)); // use current time as seed for random generator
 		not_init = false;

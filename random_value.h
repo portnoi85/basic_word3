@@ -1,2 +1,2 @@
 #pragma once
-int RandomValue();
+int RandomValue(const int max_value);
