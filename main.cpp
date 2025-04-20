@@ -6,7 +6,8 @@ int main(int argc, char** argv) {
 	// But there is some detail - OS always pass one system argument - the name of the executable
 	// So, is the application was executed without arguments at all, argc will be still == 1
 	int max_value = 100;
-	if (argument(argc, argv, max_value) == -1) {
+	if (argument(argc, argv, max_value) < 0) {
+		help(std::string(argv[0]));
 		return -1;
 	}
 	const int target_value = RandomValue(max_value);

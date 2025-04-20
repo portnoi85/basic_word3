@@ -4,3 +4,4 @@
 #include "check_value.h"
 #include "high_scores.h"
 #include <iostream>
+#include <string>
