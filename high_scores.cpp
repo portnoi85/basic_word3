@@ -1,4 +1,5 @@
 #include "high_scores.h"
+#include "map"
 
 const std::string high_scores_filename = "high_scores.txt";
 
@@ -21,6 +22,7 @@ int WriteNewHighScore(std:: string user_name, int attempts_count) {
 // Read the high score file and print all results
 int ReadTheHighScore() {
 	std::ifstream in_file{high_scores_filename};
+	std::map<std::string, int> results;
 	if (!in_file.is_open()) {
 		std::cout << "Failed to open file for read: " << high_scores_filename << "!" << std::endl;
 		return -1;
@@ -39,9 +41,16 @@ int ReadTheHighScore() {
 		if (in_file.fail()) {
 			break;
 		}
-
+		auto i = results.find(username);
+		if ( (i == results.end()) || (i->second > high_score)) {
+			results[username]=high_score;
+		}
 		// Print the information to the screen
-		std::cout << username << '\t' << high_score << std::endl;
+	}
+	auto i = results.begin();
+	while (i != results.end()) {
+		std::cout << i->first << '\t' << i->second << std::endl;
+		++i;
 	}
 	return 0;
 }
