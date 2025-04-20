@@ -3,5 +3,5 @@
 #include <fstream>
 #include <string>
 
-int WriteNewHighScore(std:: string user_name, int attempts_count);
+int WriteNewHighScore(std:: string current_name, int score);
 int ReadTheHighScore();
