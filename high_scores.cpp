@@ -4,6 +4,12 @@ const std::string high_scores_filename = "high_scores.txt";
 
 // Write new high score to the records table
 int WriteNewHighScore(std:: string current_name, int score) {
+	std::ofstream out_file{high_scores_filename, std::ios_base::app};
+	if (!out_file.is_open()) {
+		std::cout << "Failed to open file for write: " << high_scores_filename << "!" << std::endl;
+		return -1;
+	}
+	out_file.close();
 	std::ifstream in_file{high_scores_filename};
 	if (!in_file.is_open()) {
 		std::cout << "Failed to open file for read: " << high_scores_filename << "!" << std::endl;
@@ -36,7 +42,7 @@ int WriteNewHighScore(std:: string current_name, int score) {
 	}
 	// We should open the output file in the append mode - we don't want
 	// to erase previous results.
-	std::ofstream out_file{high_scores_filename, std::ios_base::trunc};
+	out_file.open(high_scores_filename, std::ios_base::trunc);
 	if (!out_file.is_open()) {
 		std::cout << "Failed to open file for write: " << high_scores_filename << "!" << std::endl;
 		return -1;
